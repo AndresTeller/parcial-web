@@ -9,6 +9,14 @@ export const addData = (profesores, $tableBody) => {
       <td>${lastname}</td>
       <td>${nit}</td>
       <td>${dedication}</td>
+      <td>
+        <buttom class="btn btn-sm btn-primary" onclick="prueba(${id});">
+          <i class="fa-solid fa-pencil"></i>
+        </buttom>
+        <buttom class="btn btn-sm btn-danger">
+          <i class="fa-solid fa-trash-can"></i>
+        </buttom>
+      </td>
     </tr>`;
   });
   $tableBody.innerHTML = content;

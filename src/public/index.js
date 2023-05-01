@@ -1,5 +1,5 @@
-import { Contratado } from "../profesor/contratado.model.js";
-import { Ordinario } from "../profesor/ordinario.model.js";
+import { Contratado } from "../contratado/contratado.model.js";
+import { Ordinario } from "../ordinario/ordinario.model.js";
 import { Profesor } from "../profesor/profesor.js";
 import { addData } from "./utility/addData.js";
 
@@ -26,6 +26,10 @@ let dataTable,
   dataTableIsInitialized = false;
 
 const dataTableOptions = {
+  columnDefs: [
+    { className: "centered", targets: [0, 1, 2, 3, 4, 5] },
+    { orderable: false, targets: [5] },
+  ],
   destroy: true,
   language: {
     lengthMenu: "Mostrar _MENU_ registros por página",
@@ -58,3 +62,8 @@ const initDataTable = () => {
 window.addEventListener("load", () => {
   initDataTable();
 });
+
+window.prueba = function(id) {
+  const obj = profesores.find((profesor) => profesor.id === id);
+  console.log(obj);
+}

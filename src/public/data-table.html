@@ -6,13 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Example Datatables.js</title>
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css"
+    />
     <!-- DataTable -->
-    <link rel="stylesheet" src="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css"></script>
+    <link
+      rel="stylesheet"
+      src="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css"
+    />
+    <!-- Font Aweson -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <div class="container my-4">
-      <div class="row">
+    <!-- Regreso -->
+    <a
+      class="back-buttom bg-light rounded-circle row justify-content-center align-items-center m-4"
+      href="./index.html"
+    >
+      <i class="fa-solid fa-arrow-left-long fa-2xl"></i>
+    </a>
+    <div class="container">
+      <div class="row bg-light rounded-2 p-2 my-5">
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <table class="table" id="data-table-users">
             <thead>
@@ -22,10 +42,10 @@
                 <th>LastName</th>
                 <th>Nit</th>
                 <th>Dedication</th>
+                <th>Options</th>
               </tr>
             </thead>
-            <tbody id="table-body-users">
-            </tbody>
+            <tbody id="table-body-users"></tbody>
           </table>
         </div>
       </div>
