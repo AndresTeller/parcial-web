@@ -10,7 +10,13 @@ const d = document,
 
 const profesor1 = new Profesor(1, "Jesús", "Berdugo", "1111", "Matematicas");
 const profesor2 = new Profesor(2, "Andres", "Teller", "2222", "Fisica");
-const profesor3 = new Profesor(3, "Sebastian", "Enamorado", "3333", "Base de Datos");
+const profesor3 = new Profesor(
+  3,
+  "Sebastian",
+  "Enamorado",
+  "3333",
+  "Base de Datos"
+);
 
 const profesores = [profesor1, profesor2, profesor3];
 
@@ -43,7 +49,7 @@ const initDataTable = () => {
     dataTable.destroy();
   }
 
- addData(profesores, $tableBodyUsers);
+  addData(profesores, $tableBodyUsers);
 
   dataTable = $("#data-table-users").DataTable(dataTableOptions);
   dataTableIsInitialized = true;
@@ -52,4 +58,3 @@ const initDataTable = () => {
 window.addEventListener("load", () => {
   initDataTable();
 });
-
