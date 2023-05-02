@@ -24,17 +24,22 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <!-- Regreso -->
-    <a
-      class="back-buttom bg-light rounded-circle row justify-content-center align-items-center m-4"
-      href="./index.html"
-    >
-      <i class="fa-solid fa-arrow-left-long fa-2xl"></i>
-    </a>
+    <!-- Container Principal -->
     <div class="container">
-      <div class="row bg-light rounded-2 p-2 my-5">
+      <div class="row container-table rounded-2 p-4">
+        <!-- Container Combobox -->
+        <div class="container-combobox">
+          <label for="color">Tipo:</label>
+          <select id="color" name="color" class="form-select w-25">
+            <option value="todos" default>Todos</option>
+            <option value="contrato">Contrato</option>
+            <option value="ordinario">Ordinario</option>
+          </select>
+        </div>
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <!-- Tabla -->
           <table class="table" id="data-table-users">
+            <!-- Cabecera de la tabla -->
             <thead>
               <tr>
                 <th>#</th>
@@ -45,6 +50,7 @@
                 <th>Options</th>
               </tr>
             </thead>
+            <!-- Cuerpo de la tabla -->
             <tbody id="table-body-users"></tbody>
           </table>
         </div>
