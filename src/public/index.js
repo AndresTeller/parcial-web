@@ -61,6 +61,7 @@ const initDataTable = () => {
 
 window.addEventListener("load", () => {
   initDataTable();
+  console.log("Hola");
 });
 
 window.prueba = function(id) {
