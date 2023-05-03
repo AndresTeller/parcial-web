@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contract type form</title>
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css"
+    />
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <!-- button invisible -->
+    <a href="#" id="button-invisible"></a>
+    <div class="row justify-content-center align-items-center vh-100 w-100">
+      <!-- Contenedor del formulario -->
+      <div class="card-custom-ordinary-form p-2 rounded-2 px-4">
+        <!-- Contenedor del titulo -->
+        <div class="row justify-content-center container-title">
+          <h1 class="">Contract Type</h1>
+        </div>
+        <!-- Menseja de correcto o incorrecto -->
+        <div class="d-flex justify-content-center my-2">
+          <div
+            class="message-failed visible rounded-2 p-2"
+            id="message-failed"
+          ></div>
+          <div class="message-succes visible rounded-2 p-2" id="message-succes">
+            Se ha registrado correctamente
+          </div>
+        </div>
+        <!-- Inicio del formulario -->
+        <form>
+          <!-- Input nombre -->
+          <div class="mb-3">
+            <label for="input-name" class="form-label">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="input-name"
+              aria-describedby="emailHelp"
+              required
+            />
+          </div>
+          <!-- Input apellido -->
+          <div class="mb-3">
+            <label for="input-lastName" class="form-label">LastName</label>
+            <input
+              type="text"
+              class="form-control"
+              id="input-lastName"
+              aria-describedby="emailHelp"
+              required
+            />
+          </div>
+          <!-- Input NIT -->
+          <div class="mb-3">
+            <label for="input-nit" class="form-label">NIT</label>
+            <input
+              type="text"
+              class="form-control"
+              id="input-nit"
+              aria-describedby="emailHelp"
+              required
+            />
+          </div>
+          <!-- Input dedicacion -->
+          <div class="mb-3">
+            <label for="input-dedication" class="form-label">Dedication</label>
+            <input
+              type="text"
+              class="form-control"
+              id="input-dedication"
+              aria-describedby="emailHelp"
+              required
+            />
+          </div>
+          <!-- Input Start Date -->
+          <div class="mb-3">
+            <label for="input-start-date" class="form-label">Start Date</label>
+            <input
+              type="date"
+              class="form-control"
+              id="input-start-date"
+              aria-describedby="emailHelp"
+              required
+            />
+          </div>
+          <!-- Input End Date -->
+          <div class="mb-3">
+            <label for="input-end-date" class="form-label">End Date</label>
+            <input
+              type="date"
+              class="form-control"
+              id="input-end-date"
+              aria-describedby="emailHelp"
+              required
+            />
+          </div>
+          <!-- Contenedor buttoms -->
+          <div
+            class="row justify-content-center align-items-center container-btn"
+          >
+            <div class="col text-center">
+              <button class="btn btn-primary btn-lg" id="btn-guardar">
+                Guardar
+              </button>
+              <button
+                class="btn btn-danger btn-lg"
+                onclick="window.location.href='../index.html'"
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Modal Card -->
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header" id="title-modal">
+            <h2 class="titulo-modal" id="staticBackdropLabel">¿Quieres agregar a otro?</h2>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <!-- Inicio contenedor Button decicion -->
+          <div
+            class="modal-body row justify-content-center align-items-center h-100 mx-2"
+            id="container-btn-decicion"
+          >
+            <!-- Boton SI-->
+            <button class="btn btn-primary btn-lg my-2" id="btn-si">Si</button>
+            <!-- Boton NO -->
+            <button class="btn btn-danger btn-lg mx-4" id="btn-no">No</button>
+          </div>
+          <!-- Fin contenedor Button decicion -->
+          <!-- Inicio container buttons Types -->
+          <div
+            class="visible modal-body row justify-content-center align-items-center h-100 mx-2"
+            id="container-btn-type"
+          >
+            <!-- Boton de add tipo contrato -->
+            <button
+              class="btn btn-primary btn-lg my-2"
+              onclick="window.location.href='form-contrato.html'"
+            >
+              Contrato
+            </button>
+            <!-- Boton de add tipo ordinario -->
+            <button
+              class="btn btn-primary btn-lg mx-4"
+              onclick="window.location.href='form-ordinario.html'"
+            >
+              Ordinario
+            </button>
+          </div>
+          <!-- Fin container buttons Types -->
+        </div>
+      </div>
+    </div>
+    <!-- FIN DE LA CARTA MODAL -->
+    <!-- Bootstrap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Custom JS -->
+    <script
+      src="../utility/getFormsData/formContrato.js"
+      type="module"
+    ></script>
+  </body>
+</html>

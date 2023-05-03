@@ -1,9 +1,9 @@
 import { Contratado } from "../contratado/contratado.model.js";
 import { Ordinario } from "../ordinario/ordinario.model.js";
 import { Profesor } from "../profesor/profesor.js";
-import { addDataOrdinario } from "./utility/addDataOrdinario.js";
-import { addDataTodos } from "./utility/addDataTodos.js";
-import { addDataContratado } from "./utility/addDataContratado.js";
+import { addDataOrdinario } from "./utility/addDinamicData/addDataOrdinario.js";
+import { addDataTodos } from "./utility/addDinamicData/addDataTodos.js";
+import { addDataContratado } from "./utility/addDinamicData/addDataContratado.js";
 import { destroyDataTable } from "./utility/controlDataTable/destroyDataTable.js";
 
 const d = document,
