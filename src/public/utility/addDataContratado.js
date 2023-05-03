@@ -1,7 +1,7 @@
-export const addData = (profesores, $tableBody) => {
+export const addDataContratado = (profesores, $tableBody) => {
   let content = ``;
   profesores.forEach((profesor, index) => {
-    const { name, lastname, dedication, id, nit } = profesor;
+    const { name, lastname, dedication, id, nit, startDate, endDate } = profesor;
     content += `
     <tr>
       <td>${id}</td>
@@ -9,13 +9,15 @@ export const addData = (profesores, $tableBody) => {
       <td>${lastname}</td>
       <td>${nit}</td>
       <td>${dedication}</td>
+      <td>${startDate}</td>
+      <td>${endDate}</td>
       <td>
-        <buttom class="btn btn-sm btn-primary" onclick="prueba(${id});">
+        <button class="btn btn-sm btn-primary" onclick="prueba(${id});">
           <i class="fa-solid fa-pencil"></i>
-        </buttom>
-        <buttom class="btn btn-sm btn-danger">
+        </button>
+        <button class="btn btn-sm btn-danger">
           <i class="fa-solid fa-trash-can"></i>
-        </buttom>
+        </button>
       </td>
     </tr>`;
   });
