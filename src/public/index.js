@@ -3,7 +3,9 @@ import { Ordinario } from "../ordinario/ordinario.model.js";
 import { Profesor } from "../profesor/profesor.js";
 import { addDataOrdinario } from "./utility/addDataOrdinario.js";
 import { addDataTodos } from "./utility/addDataTodos.js";
-import { addDataContratado } from "./utility/addDataContratado.js"
+import { addDataContratado } from "./utility/addDataContratado.js";
+import { destroyDataTable } from "./utility/controlDataTable/destroyDataTable.js";
+
 const d = document,
   $tableBodyUsers = d.getElementById("table-body-users"),
   $select = d.getElementById("select");
@@ -62,15 +64,18 @@ const dataTableOptions = {
   },
 };
 
+const initializeDataTable = () => {
+  dataTable = $("#data-table-users").DataTable(dataTableOptions);
+  dataTableIsInitialized = true;
+};
+
 const initDataTable = () => {
   if (dataTableIsInitialized) {
     dataTable.destroy();
   }
 
   addDataTodos(profesores, $tableBodyUsers);
-
-  dataTable = $("#data-table-users").DataTable(dataTableOptions);
-  dataTableIsInitialized = true;
+  initializeDataTable();
 };
 
 window.addEventListener("load", () => {
@@ -83,63 +88,69 @@ window.prueba = function (id) {
   console.log(obj);
 };
 
-/************************Evento para dinamizar la tabla*****************************/
+//*********************************************************
+//**********-EVENTOS Y FUNCIONES DE TABLA DINAMICA-********
+//*********************************************************
 let anterior = null;
+
+const addThOrdinary = () => {
+  const th = `<th>YearService</th>`;
+  $trHeadUser.children[4].insertAdjacentHTML("afterend", th);
+};
+
+const addThContratado = () => {
+  const th = `<th>Start Date</th>
+                  <th>End Date</th>`;
+  $trHeadUser.children[4].insertAdjacentHTML("afterend", th);
+}
+
+const removeThContratado = () => {
+  if (anterior === "contratado") {
+    $trHeadUser.children[4].nextElementSibling.remove();
+    $trHeadUser.children[4].nextElementSibling.remove();
+  }
+}
+
+const removeThOrdinario = () => {
+  if (anterior === "ordinario") {
+    $trHeadUser.children[4].nextElementSibling.remove();
+  }
+}
+
+const removeElementsTableBody = () => {
+  while ($tableBodyUsers.firstChild) {
+    $tableBodyUsers.removeChild($tableBodyUsers.firstChild);
+  }
+}
+
 $select.addEventListener("change", (e) => {
-  // Todos
+  // TYPE TODOS
   if ($select.value === "todos") {
-    if (dataTableIsInitialized) {
-      dataTable.destroy();
-    }
-    if (anterior === "ordinario") {
-      $trHeadUser.children[4].nextElementSibling.remove();
-    }
-    if (anterior === "contratado") {
-      $trHeadUser.children[4].nextElementSibling.remove();
-      $trHeadUser.children[4].nextElementSibling.remove();
-    }
+    destroyDataTable(dataTable, dataTableIsInitialized);
+    removeThOrdinario();
+    removeThContratado();
     anterior = $select.value;
     addDataTodos(profesores, $tableBodyUsers);
-    dataTable = $("#data-table-users").DataTable(dataTableOptions);
-    dataTableIsInitialized = true;
+    initializeDataTable();
   }
-  // Ordinario
+  // TYPE ORDINARIO
   if ($select.value === "ordinario") {
-    if (dataTableIsInitialized) {
-      dataTable.destroy();
-    }
-    if (anterior === "contratado") {
-      $trHeadUser.children[4].nextElementSibling.remove();
-      $trHeadUser.children[4].nextElementSibling.remove();
-    }
+    destroyDataTable(dataTable, dataTableIsInitialized);
+    removeThContratado();
     anterior = $select.value;
-    const cont = `<th>YearService</th>`;
-    $trHeadUser.children[4].insertAdjacentHTML("afterend", cont);
-    while ($tableBodyUsers.firstChild) {
-      $tableBodyUsers.removeChild($tableBodyUsers.firstChild);
-    }
+    addThOrdinary();
+    removeElementsTableBody();
     addDataOrdinario(profesores2, $tableBodyUsers);
-    dataTable = $("#data-table-users").DataTable(dataTableOptions);
-    dataTableIsInitialized = true;
+    initializeDataTable();
   }
-  // Contratado
+  // TYPE CONTRATADO
   if ($select.value === "contratado") {
-    if (dataTableIsInitialized) {
-      dataTable.destroy();
-    }
-    if (anterior === "ordinario") {
-      $trHeadUser.children[4].nextElementSibling.remove();
-    }
+    destroyDataTable(dataTable, dataTableIsInitialized);
+    removeThOrdinario();
     anterior = $select.value;
-    const cont = `<th>Start Date</th>
-                  <th>End Date</th>`;
-    $trHeadUser.children[4].insertAdjacentHTML("afterend", cont);
-    while ($tableBodyUsers.firstChild) {
-      $tableBodyUsers.removeChild($tableBodyUsers.firstChild);
-    }
+    addThContratado();
+    removeElementsTableBody();
     addDataContratado(profesores3, $tableBodyUsers);
-    dataTable = $("#data-table-users").DataTable(dataTableOptions);
-    dataTableIsInitialized = true;
+    initializeDataTable();
   }
-  console.log(anterior);
 });
