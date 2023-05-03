@@ -29,10 +29,10 @@
       <div class="row container-table rounded-2 p-4">
         <!-- Container Combobox -->
         <div class="container-combobox">
-          <label for="color">Tipo:</label>
-          <select id="color" name="color" class="form-select w-25">
+          <label for="select">Tipo:</label>
+          <select id="select" name="color" class="form-select w-25">
             <option value="todos" default>Todos</option>
-            <option value="contrato">Contrato</option>
+            <option value="contratado">Contrato</option>
             <option value="ordinario">Ordinario</option>
           </select>
         </div>
@@ -41,7 +41,7 @@
           <table class="table" id="data-table-users">
             <!-- Cabecera de la tabla -->
             <thead>
-              <tr>
+              <tr id="tr-head-users">
                 <th>#</th>
                 <th>Name</th>
                 <th>LastName</th>
