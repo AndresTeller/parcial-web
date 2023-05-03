@@ -1,5 +1,5 @@
-import { filtrarProfesores } from "./filtrar-profesores.js";
-import { pool } from "../../db/db.js";
+import { filtrarProfesores } from "../utility/filtrar-profesores.js";
+import { pool } from "../../../db/db.js";
 
 export const getProfesores = async (req, res) => {
   try {

@@ -5,7 +5,7 @@ import {
   getProfesor,
   getProfesores,
   updateProfesor,
-} from "./profesor.controller.js";
+} from "../controllers/profesor.controller.js";
 
 const router = Router();
 
