@@ -103,29 +103,38 @@ export const createProfesor = async (req, res) => {
 };
 
 export const updateProfesor = async (req, res) => {
-  //POR TERMINAR...
   try {
     const nit = req.params.nit;
-    const { name, lastname, dedication, yearService, startDate, endDate } = req.body;
+    const {
+      name,
+      lastname,
+      dedication,
+      yearService,
+      startDate,
+      endDate,
+      tipo,
+    } = req.body;
 
-    const ordinario = await pool.query(
-      `UPDATE profesor INNER JOIN ordinario ON profesor.nit = ordinario.nit_profesor SET profesor.name = ?, profesor.lastname = ?, profesor.dedication = ?, ordinario.year_service = ? WHERE profesor.nit = ?;
-`,[name, lastname, dedication, yearService, nit]
-    );
-
-    const contratado = await pool.query(
-      `UPDATE profesor INNER JOIN contratado ON profesor.nit = contratado.nit_profesor SET profesor.name = ?, profesor.lastname = ?, profesor.dedication = ?, contratado.start_date = ?, contratado.end_date = ? WHERE profesor.nit = ?;`,
-      [name, lastname, dedication, startDate, endDate, nit]
-    );
+    if (tipo === "ordinario") {
+      await pool.query(
+        `UPDATE profesor INNER JOIN ordinario ON profesor.nit = ordinario.nit_profesor SET profesor.name = ?, profesor.lastname = ?, profesor.dedication = ?, ordinario.year_service = ? WHERE profesor.nit = ?;`,
+        [name, lastname, dedication, yearService, nit]
+      );
+    } else {
+      await pool.query(
+        `UPDATE profesor INNER JOIN contratado ON profesor.nit = contratado.nit_profesor SET profesor.name = ?, profesor.lastname = ?, profesor.dedication = ?, contratado.start_date = ?, contratado.end_date = ? WHERE profesor.nit = ?;`,
+        [name, lastname, dedication, startDate, endDate, nit]
+      );
+    }
 
     res.json({
       success: true,
-      data: profesor,
+      message: "Update was succesfull",
     });
   } catch (error) {
     res.json({
       success: false,
-      message: "Something goes wrong.",
+      message: "Something goes wrong",
     });
   }
 };
