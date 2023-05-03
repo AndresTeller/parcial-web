@@ -6,10 +6,19 @@ body {
 
 /* Data Table page */
 
-.back-buttom {
-  width: 60px;
-  height: 60px;
-  text-decoration: none;
+.container-combobox {
+  display: inline;
+  width: 600px;
+  margin-bottom: 15px;
+}
+
+.container-combobox label {
+  margin-bottom: 5px;
+}
+
+.container-table {
+  margin-top: 10rem;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 /* Pricipal Page */
@@ -18,12 +27,14 @@ body {
 }
 
 .card-custom {
-  background-color: white;
+  background-color: transparent;
+  backdrop-filter: blur(10px);
   width: 600px;
   height: 200px;
   text-align: center;
-  color: dodgerblue;
+  color: white;
   font-weight: 600;
+  border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .card-custom h1 {
@@ -35,3 +46,25 @@ body {
   font-size: 24px;
   text-align: center;
 }
+
+/* Ordinary form */
+
+.card-custom-ordinary-form {
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  width: 600px;
+  height: auto;
+  color: white;
+  font-weight: 600;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.container-title h1 {
+  width: auto;
+}
+
+.container-btn button {
+  margin: 1rem 1rem 0 1rem;
+}
+
+/* Contract form */
