@@ -4,7 +4,10 @@ import { addDataOrdinario } from "./utility/addDinamicData/addDataOrdinario.js";
 import { addDataTodos } from "./utility/addDinamicData/addDataTodos.js";
 import { addDataContratado } from "./utility/addDinamicData/addDataContratado.js";
 import { destroyDataTable } from "./utility/controlDataTable/destroyDataTable.js";
-import { deleteProfesor, getProfesores } from "../profesor/utility/fetch-profesores.js";
+import {
+  deleteProfesor,
+  getProfesores,
+} from "../profesor/utility/fetch-profesores.js";
 
 const d = document,
   $tableBodyUsers = d.getElementById("table-body-users"),
@@ -13,9 +16,6 @@ const d = document,
 let $trHeadUser = null;
 
 // Funciones de los botones de tabla
-window.edit = function (nit) {
-  console.log("Hola soy " + nit);
-};
 
 window.borrar = function (nit) {
   console.log(nit);
@@ -72,7 +72,21 @@ window.addEventListener("load", async () => {
   $trHeadUser = d.getElementById("tr-head-users");
 });
 
-
+window.edit = function (nit) {
+  let encontrado = null;
+  for (const profesor of profesores) {
+    if (profesor.nit === nit) {
+      encontrado = profesor;
+    }
+  }
+  if (encontrado.tipo === "ordinario") {
+    localStorage.setItem("editable", JSON.stringify(encontrado));
+    window.location.href = "../pages/edit-ordinario.html";
+  } else {
+    localStorage.setItem("editable", JSON.stringify(encontrado));
+    window.location.href = "../pages/edit-contratado.html";
+  }
+};
 
 //*********************************************************
 //**********-EVENTOS Y FUNCIONES DE TABLA DINAMICA-********
