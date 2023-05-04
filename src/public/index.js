@@ -4,6 +4,7 @@ import { addDataOrdinario } from "./utility/addDinamicData/addDataOrdinario.js";
 import { addDataTodos } from "./utility/addDinamicData/addDataTodos.js";
 import { addDataContratado } from "./utility/addDinamicData/addDataContratado.js";
 import { destroyDataTable } from "./utility/controlDataTable/destroyDataTable.js";
+import { getProfesores } from "../profesor/utility/fetch-profesores.js";
 
 const d = document,
   $tableBodyUsers = d.getElementById("table-body-users"),
@@ -12,28 +13,29 @@ const d = document,
 let $trHeadUser = null;
 
 // Inicio Prueba
-const profesor1 = new Ordinario(
-  1,
-  "Jesús",
-  "Berdugo",
-  "1111",
-  "Matematicas",
-  "5"
-);
-const profesor2 = new Ordinario(2, "Andres", "Teller", "2222", "Fisica", "7");
-const profesor3 = new Contratado(
-  3,
-  "Sebastian",
-  "Enamorado",
-  "3333",
-  "Base de Datos",
-  "2023-05-02",
-  "2025-01-01"
-);
 
-const profesores = [profesor1, profesor2, profesor3];
-const profesores2 = [profesor1, profesor2];
-const profesores3 = [profesor3];
+// const profesor1 = new Ordinario(
+//   1,
+//   "Jesús",
+//   "Berdugo",
+//   "1111",
+//   "Matematicas",
+//   "5"
+// );
+// const profesor2 = new Ordinario(2, "Andres", "Teller", "2222", "Fisica", "7");
+// const profesor3 = new Contratado(
+//   3,
+//   "Sebastian",
+//   "Enamorado",
+//   "3333",
+//   "Base de Datos",
+//   "2023-05-02",
+//   "2025-01-01"
+// );
+
+// const profesores = [profesor1, profesor2, profesor3];
+// const profesores2 = [profesor1, profesor2];
+// const profesores3 = [profesor3];
 
 // Fin Prueba
 
@@ -68,20 +70,25 @@ const initializeDataTable = () => {
   dataTableIsInitialized = true;
 };
 
-const initDataTable = () => {
-  if (dataTableIsInitialized) {
-    dataTable.destroy();
-  }
-
+let fetchProfesores = null;
+let arrayOrdinarios = [];
+let arrayContratados = [];
+let profesores = [];
+window.addEventListener("load", async () => {
+  fetchProfesores = await getProfesores(
+    "http://localhost:3000/api/v1/profesores"
+  );
+  destroyDataTable(dataTable, dataTableIsInitialized);
+  profesores = fetchProfesores.data[0].concat(fetchProfesores.data[1]);
+  arrayOrdinarios = fetchProfesores.data[0];
+  arrayContratados = fetchProfesores.data[1];
+  console.log(arrayContratados, arrayOrdinarios);
   addDataTodos(profesores, $tableBodyUsers);
   initializeDataTable();
-};
-
-window.addEventListener("load", () => {
-  initDataTable();
   $trHeadUser = d.getElementById("tr-head-users");
 });
 
+// Funciones de los botones de tabla
 window.prueba = function (id) {
   const obj = profesores.find((profesor) => profesor.id === id);
   console.log(obj);
@@ -131,6 +138,7 @@ $select.addEventListener("change", (e) => {
     anterior = $select.value;
     addDataTodos(profesores, $tableBodyUsers);
     initializeDataTable();
+    console.log(profesores);
   }
   // TYPE ORDINARIO
   if ($select.value === "ordinario") {
@@ -139,8 +147,9 @@ $select.addEventListener("change", (e) => {
     anterior = $select.value;
     addThOrdinary();
     removeElementsTableBody();
-    addDataOrdinario(profesores2, $tableBodyUsers);
+    addDataOrdinario(fetchProfesores.data[0], $tableBodyUsers);
     initializeDataTable();
+    console.log(profesores);
   }
   // TYPE CONTRATADO
   if ($select.value === "contratado") {
@@ -149,7 +158,8 @@ $select.addEventListener("change", (e) => {
     anterior = $select.value;
     addThContratado();
     removeElementsTableBody();
-    addDataContratado(profesores3, $tableBodyUsers);
+    addDataContratado(fetchProfesores.data[1], $tableBodyUsers);
     initializeDataTable();
+    console.log(profesores);
   }
 });

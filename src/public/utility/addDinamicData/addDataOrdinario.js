@@ -1,7 +1,7 @@
 export const addDataOrdinario = (profesores, $tableBody) => {
   let content = ``;
   profesores.forEach((profesor, index) => {
-    const { name, lastname, dedication, id, nit, yearService } = profesor;
+    const { name, lastname, dedication, id, nit, year_service } = profesor;
     content += `
     <tr>
       <td>${index + 1}</td>
@@ -9,7 +9,7 @@ export const addDataOrdinario = (profesores, $tableBody) => {
       <td>${lastname}</td>
       <td>${nit}</td>
       <td>${dedication}</td>
-      <td>${yearService}</td>
+      <td>${year_service}</td>
       <td>
         <button class="btn btn-sm btn-primary" onclick="prueba(${id});">
           <i class="fa-solid fa-pencil"></i>
