@@ -1,6 +1,5 @@
 export class Profesor {
-  constructor(id, name, lastname, nit, dedication) {
-    this.id = id;
+  constructor(name, lastname, nit, dedication) {
     this.name = name;
     this.lastname = lastname;
     this.nit = nit;

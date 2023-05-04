@@ -4,7 +4,7 @@ export const addDataContratado = (profesores, $tableBody) => {
     const { name, lastname, dedication, id, nit, startDate, endDate } = profesor;
     content += `
     <tr>
-      <td>${id}</td>
+      <td>${index + 1}</td>
       <td>${name}</td>
       <td>${lastname}</td>
       <td>${nit}</td>

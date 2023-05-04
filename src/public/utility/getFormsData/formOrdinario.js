@@ -1,4 +1,5 @@
 import { Ordinario } from "../../../ordinario/ordinario.model.js";
+import { createProfesores } from "../../../profesor/utility/fetch-profesores.js";
 import { validationsOrdanary } from "../validation/validationsOrdinary.js";
 
 const d = document;
@@ -40,7 +41,6 @@ d.addEventListener("click", (e) => {
   e.preventDefault();
   if (e.target === $btnEnviar) {
     const profesor = new Ordinario(
-      undefined,
       $inputName.value,
       $inputLastName.value,
       $inputNit.value,
@@ -80,6 +80,20 @@ d.addEventListener("click", (e) => {
 $btnSi.addEventListener("click", () => {
   $titulo.textContent = "¿Tipo?";
   $containerDecicion.classList.toggle("visible");
-  $containerType.classList.toggle("visible")
-})
+  $containerType.classList.toggle("visible");
+});
 
+const addType = (profesores) => {
+  for (const profesor of profesores) {
+    'yearService' in profesor 
+      ? profesor.tipo = 'ordinario'
+      : profesor.tipo = 'contratado'
+  }
+  return profesores;
+};
+
+$btnNo.addEventListener("click", async () => {
+  const profesores = JSON.parse(localStorage.getItem("profesores"));
+  const data = addType(profesores);
+  await createProfesores(data, "http://localhost:3000/api/v1/profesores");
+});

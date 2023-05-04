@@ -1,6 +1,5 @@
 import { Contratado } from "../contratado/contratado.model.js";
 import { Ordinario } from "../ordinario/ordinario.model.js";
-import { Profesor } from "../profesor/profesor.js";
 import { addDataOrdinario } from "./utility/addDinamicData/addDataOrdinario.js";
 import { addDataTodos } from "./utility/addDinamicData/addDataTodos.js";
 import { addDataContratado } from "./utility/addDinamicData/addDataContratado.js";
@@ -102,26 +101,26 @@ const addThContratado = () => {
   const th = `<th>Start Date</th>
                   <th>End Date</th>`;
   $trHeadUser.children[4].insertAdjacentHTML("afterend", th);
-}
+};
 
 const removeThContratado = () => {
   if (anterior === "contratado") {
     $trHeadUser.children[4].nextElementSibling.remove();
     $trHeadUser.children[4].nextElementSibling.remove();
   }
-}
+};
 
 const removeThOrdinario = () => {
   if (anterior === "ordinario") {
     $trHeadUser.children[4].nextElementSibling.remove();
   }
-}
+};
 
 const removeElementsTableBody = () => {
   while ($tableBodyUsers.firstChild) {
     $tableBodyUsers.removeChild($tableBodyUsers.firstChild);
   }
-}
+};
 
 $select.addEventListener("change", (e) => {
   // TYPE TODOS

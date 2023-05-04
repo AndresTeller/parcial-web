@@ -41,7 +41,6 @@ $btnGuardar.addEventListener("click", (e) => {
   e.preventDefault();
 
   const profesor = new Contratado(
-    undefined,
     $inputName.value,
     $inputLastName.value,
     $inputNit.value,
@@ -86,4 +85,19 @@ $btnSi.addEventListener("click", () => {
   $titulo.textContent = "¿Tipo?";
   $containerDecicion.classList.toggle("visible");
   $containerType.classList.toggle("visible");
+});
+
+const addType = (profesores) => {
+  for (const profesor of profesores) {
+    "yearService" in profesor
+      ? (profesor.tipo = "ordinario")
+      : (profesor.tipo = "contratado");
+  }
+  return profesores;
+};
+
+$btnNo.addEventListener("click", () => {
+  const profesores = JSON.parse(localStorage.getItem("profesores"));
+  const data = addType(profesores);
+  createProfesores(data, "http:/localhost:3000/api/v1/profesores");
 });
