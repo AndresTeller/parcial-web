@@ -85,9 +85,9 @@ $btnSi.addEventListener("click", () => {
 
 const addType = (profesores) => {
   for (const profesor of profesores) {
-    'yearService' in profesor 
-      ? profesor.tipo = 'ordinario'
-      : profesor.tipo = 'contratado'
+    "yearService" in profesor
+      ? (profesor.tipo = "ordinario")
+      : (profesor.tipo = "contratado");
   }
   return profesores;
 };
