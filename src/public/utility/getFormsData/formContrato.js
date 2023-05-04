@@ -1,6 +1,6 @@
 import { Contratado } from "../../../contratado/contratado.model.js";
 import { validationsContratado } from "../validation/validationsContratado.js";
-
+import { createProfesores } from "../../../profesor/utility/fetch-profesores.js";
 const d = document;
 
 // ELEMENTOS DEL HTML
@@ -99,5 +99,6 @@ const addType = (profesores) => {
 $btnNo.addEventListener("click", () => {
   const profesores = JSON.parse(localStorage.getItem("profesores"));
   const data = addType(profesores);
-  createProfesores(data, "http:/localhost:3000/api/v1/profesores");
+  createProfesores(data, "http://localhost:3000/api/v1/profesores");
+  localStorage.removeItem("profesores");
 });

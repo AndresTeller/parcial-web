@@ -96,4 +96,5 @@ $btnNo.addEventListener("click", async () => {
   const profesores = JSON.parse(localStorage.getItem("profesores"));
   const data = addType(profesores);
   await createProfesores(data, "http://localhost:3000/api/v1/profesores");
+  localStorage.removeItem("profesores");
 });
