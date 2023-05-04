@@ -4,7 +4,7 @@ import { addDataOrdinario } from "./utility/addDinamicData/addDataOrdinario.js";
 import { addDataTodos } from "./utility/addDinamicData/addDataTodos.js";
 import { addDataContratado } from "./utility/addDinamicData/addDataContratado.js";
 import { destroyDataTable } from "./utility/controlDataTable/destroyDataTable.js";
-import { getProfesores } from "../profesor/utility/fetch-profesores.js";
+import { deleteProfesor, getProfesores } from "../profesor/utility/fetch-profesores.js";
 
 const d = document,
   $tableBodyUsers = d.getElementById("table-body-users"),
@@ -12,32 +12,16 @@ const d = document,
 
 let $trHeadUser = null;
 
-// Inicio Prueba
+// Funciones de los botones de tabla
+window.edit = function (nit) {
+  console.log("Hola soy " + nit);
+};
 
-// const profesor1 = new Ordinario(
-//   1,
-//   "Jesús",
-//   "Berdugo",
-//   "1111",
-//   "Matematicas",
-//   "5"
-// );
-// const profesor2 = new Ordinario(2, "Andres", "Teller", "2222", "Fisica", "7");
-// const profesor3 = new Contratado(
-//   3,
-//   "Sebastian",
-//   "Enamorado",
-//   "3333",
-//   "Base de Datos",
-//   "2023-05-02",
-//   "2025-01-01"
-// );
-
-// const profesores = [profesor1, profesor2, profesor3];
-// const profesores2 = [profesor1, profesor2];
-// const profesores3 = [profesor3];
-
-// Fin Prueba
+window.borrar = function (nit) {
+  console.log(nit);
+  deleteProfesor(`http://localhost:3000/api/v1/profesores/${nit}`);
+  location.reload();
+};
 
 let dataTable,
   dataTableIsInitialized = false;
@@ -88,11 +72,7 @@ window.addEventListener("load", async () => {
   $trHeadUser = d.getElementById("tr-head-users");
 });
 
-// Funciones de los botones de tabla
-window.prueba = function (id) {
-  const obj = profesores.find((profesor) => profesor.id === id);
-  console.log(obj);
-};
+
 
 //*********************************************************
 //**********-EVENTOS Y FUNCIONES DE TABLA DINAMICA-********

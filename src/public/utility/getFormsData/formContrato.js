@@ -101,4 +101,5 @@ $btnNo.addEventListener("click", () => {
   const data = addType(profesores);
   createProfesores(data, "http://localhost:3000/api/v1/profesores");
   localStorage.removeItem("profesores");
+  window.location.href = "../index.html";
 });

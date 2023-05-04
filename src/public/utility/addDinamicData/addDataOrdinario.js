@@ -11,10 +11,10 @@ export const addDataOrdinario = (profesores, $tableBody) => {
       <td>${dedication}</td>
       <td>${year_service}</td>
       <td>
-        <button class="btn btn-sm btn-primary" onclick="prueba(${id});">
+        <button class="btn btn-sm btn-primary" onclick="edit('${nit}');">
           <i class="fa-solid fa-pencil"></i>
         </button>
-        <button class="btn btn-sm btn-danger">
+        <button class="btn btn-sm btn-danger" onclick="borrar('${nit}');">
           <i class="fa-solid fa-trash-can"></i>
         </button>
       </td>

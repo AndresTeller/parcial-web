@@ -97,4 +97,5 @@ $btnNo.addEventListener("click", async () => {
   const data = addType(profesores);
   await createProfesores(data, "http://localhost:3000/api/v1/profesores");
   localStorage.removeItem("profesores");
+  window.location.href = "../index.html";
 });
