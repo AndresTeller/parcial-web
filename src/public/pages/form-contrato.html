@@ -111,7 +111,7 @@
               </button>
               <button
                 class="btn btn-danger btn-lg"
-                onclick="window.location.href='../index.html'"
+                id="btn-cancelar"
               >
                 Cancelar
               </button>
@@ -131,9 +131,11 @@
       aria-hidden="true"
     >
       <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+        <div class="modal-content ">
           <div class="modal-header" id="title-modal">
-            <h2 class="titulo-modal" id="staticBackdropLabel">¿Quieres agregar a otro?</h2>
+            <h2 class="titulo-modal" id="staticBackdropLabel">
+              ¿Quieres agregar a otro?
+            </h2>
             <button
               type="button"
               class="btn-close"
@@ -150,6 +152,17 @@
             <button class="btn btn-primary btn-lg my-2" id="btn-si">Si</button>
             <!-- Boton NO -->
             <button class="btn btn-danger btn-lg mx-4" id="btn-no">No</button>
+            <!-- Inicio de contenedor save -->
+            <div class="container-correcto visible">
+              <div
+                class="spinner-border custom-color-spinner container-spinner"
+                role="status"
+              >
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <span class="visible texto-save">Se guardo correctamente</span>
+            </div>
+            <!-- Fin contenedor save -->
           </div>
           <!-- Fin contenedor Button decicion -->
           <!-- Inicio container buttons Types -->

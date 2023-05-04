@@ -26,10 +26,11 @@ window.borrar = function (nit) {
 let dataTable,
   dataTableIsInitialized = false;
 
-const dataTableOptions = {
+let dataTableOptions = {
+  pageLength: 5,
   columnDefs: [
     { className: "centered", targets: [0, 1, 2, 3, 4, 5] },
-    { orderable: false, targets: [5] },
+    { orderable: false, targets: [5, 0, 3, 4] },
   ],
   destroy: true,
   language: {
@@ -49,8 +50,8 @@ const dataTableOptions = {
   },
 };
 
-const initializeDataTable = () => {
-  dataTable = $("#data-table-users").DataTable(dataTableOptions);
+const initializeDataTable = (options) => {
+  dataTable = $("#data-table-users").DataTable(options);
   dataTableIsInitialized = true;
 };
 
@@ -68,7 +69,7 @@ window.addEventListener("load", async () => {
   arrayContratados = fetchProfesores.data[1];
   console.log(arrayContratados, arrayOrdinarios);
   addDataTodos(profesores, $tableBodyUsers);
-  initializeDataTable();
+  initializeDataTable(dataTableOptions);
   $trHeadUser = d.getElementById("tr-head-users");
 });
 
@@ -131,8 +132,11 @@ $select.addEventListener("change", (e) => {
     removeThContratado();
     anterior = $select.value;
     addDataTodos(profesores, $tableBodyUsers);
-    initializeDataTable();
-    console.log(profesores);
+    dataTableOptions.columnDefs = [
+      { className: "centered", targets: [0, 1, 2, 3, 4, 5] },
+      { orderable: false, targets: [0, 3, 4, 5] },
+    ];
+    initializeDataTable(dataTableOptions);
   }
   // TYPE ORDINARIO
   if ($select.value === "ordinario") {
@@ -142,8 +146,11 @@ $select.addEventListener("change", (e) => {
     addThOrdinary();
     removeElementsTableBody();
     addDataOrdinario(fetchProfesores.data[0], $tableBodyUsers);
-    initializeDataTable();
-    console.log(profesores);
+    dataTableOptions.columnDefs = [
+      { className: "centered", targets: [0, 1, 2, 3, 4, 5, 6] },
+      { orderable: false, targets: [0, 3, 4, 5, 6] },
+    ];
+    initializeDataTable(dataTableOptions);
   }
   // TYPE CONTRATADO
   if ($select.value === "contratado") {
@@ -153,7 +160,10 @@ $select.addEventListener("change", (e) => {
     addThContratado();
     removeElementsTableBody();
     addDataContratado(fetchProfesores.data[1], $tableBodyUsers);
-    initializeDataTable();
-    console.log(profesores);
+    dataTableOptions.columnDefs = [
+      { className: "centered", targets: [0, 1, 2, 3, 4, 5, 6, 7] },
+      { orderable: false, targets: [0, 3, 4, 5, 6, 7] },
+      { width: "10%", targets: [5, 6]}];
+    initializeDataTable(dataTableOptions);
   }
 });

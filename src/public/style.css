@@ -5,6 +5,9 @@ body {
 }
 
 /* Data Table page */
+.manito {
+  cursor: pointer;
+}
 
 .container-combobox {
   display: inline;
@@ -38,7 +41,12 @@ body {
 #data-table-users_length {
   margin-bottom: 1rem;
 }
-
+.cabeza {
+  text-align: center;
+}
+table.dataTable tbody tr td {
+  text-align: center !important;
+}
 /* Pricipal Page */
 .padre {
   width: 100%;
@@ -107,4 +115,19 @@ body {
   display: none !important;
 }
 
-/* Contract form */
+.container-correcto {
+  background-color:  #74B62E !important;
+  display: flex;
+  padding: 0.5rem;
+  border-radius: 10px;
+  width: 100%;
+  height: 25%;
+  justify-content: center;
+}
+.custom-color-spinner {
+  color: white !important;
+}
+.texto-save {
+  font-size: 24px;
+  font-weight: bold;
+}

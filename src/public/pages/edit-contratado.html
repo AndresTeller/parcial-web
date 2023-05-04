@@ -24,13 +24,13 @@
           <h1 class="">Edit Contract Type</h1>
         </div>
         <!-- Menseja de correcto o incorrecto -->
-        <div class="d-flex justify-content-center my-2">
+        <div class="d-flex justify-content-center my-3">
           <div
             class="message-failed visible rounded-2 p-2"
             id="message-failed"
           ></div>
           <div class="message-succes visible rounded-2 p-2" id="message-succes">
-            Se ha actualizado correctamente
+            Se ha editado correctamente
           </div>
         </div>
         <!-- Inicio del formulario -->
@@ -112,7 +112,7 @@
               </button>
               <button
                 class="btn btn-danger btn-lg"
-                onclick="window.location.href='../index.html'"
+                id="btn-cancelar"
               >
                 Cancelar
               </button>
@@ -121,6 +121,39 @@
         </form>
       </div>
     </div>
+    <!-- Modal Card -->
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <!-- Inicio contenedor Button decicion -->
+          <div
+            class="modal-body row justify-content-center align-items-center h-100 mx-2"
+            id="container-btn-decicion"
+          >
+            <!-- Inicio de contenedor save -->
+            <div class="container-correcto">
+              <div
+                class="spinner-border custom-color-spinner container-spinner"
+                role="status"
+              >
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <span class="visible texto-save">Se guardo correctamente</span>
+            </div>
+            <!-- Fin contenedor save -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- FIN DE LA CARTA MODAL -->
     <!-- Bootstrap -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

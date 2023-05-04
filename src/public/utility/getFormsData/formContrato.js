@@ -18,7 +18,12 @@ const $btnGuardar = d.getElementById("btn-guardar"),
   $containerDecicion = d.getElementById("container-btn-decicion"),
   $btnSi = d.getElementById("btn-si"),
   $btnNo = d.getElementById("btn-no"),
-  $titulo = d.querySelector(".titulo-modal");
+  $titulo = d.querySelector(".titulo-modal"),
+  $containerCorrecto = d.querySelector(".container-correcto"),
+  $spanSave = d.querySelector(".texto-save"),
+  $containerSpinner = d.querySelector(".container-spinner"),
+  $modalContent = d.querySelector("#title-modal"),
+  $btnCancelar = d.getElementById("btn-cancelar");
 
 const profesores = [];
 
@@ -101,5 +106,20 @@ $btnNo.addEventListener("click", () => {
   const data = addType(profesores);
   createProfesores(data, "http://localhost:3000/api/v1/profesores");
   localStorage.removeItem("profesores");
+  $btnSi.classList.toggle("visible");
+  $btnNo.classList.toggle("visible");
+  $modalContent.classList.toggle("visible");
+  $containerCorrecto.classList.toggle("visible");
+  setTimeout(() => {
+    $containerSpinner.classList.toggle("visible");
+    $spanSave.classList.toggle("visible");
+    setTimeout(() => {
+      window.location.href = "../index.html";
+    }, 1000);
+  }, 2000);
+});
+
+$btnCancelar.addEventListener("click", (e) => {
+  e.preventDefault();
   window.location.href = "../index.html";
 });
