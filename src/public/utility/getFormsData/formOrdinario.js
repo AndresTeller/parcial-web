@@ -1,4 +1,11 @@
 import { Ordinario } from "../../../ordinario/ordinario.model.js";
+import {
+  validateName,
+  validateDedication,
+  validateLastname,
+  validateYearService,
+  validateNit
+} from "../../../ordinario/ordinario.validations.js";
 import { createProfesores } from "../../../profesor/utility/fetch-profesores.js";
 import { validationsOrdanary } from "../validation/validationsOrdinary.js";
 
@@ -42,6 +49,25 @@ const activeSucessMessage = () => {
   }, 2000);
 };
 
+const validate = (nombre, apellido, nit, dedicacion, yearService) => {
+  let validNombre = validateName(nombre);
+  if (!validNombre.ok) return validNombre.message;
+
+  let validApellido = validateLastname(apellido);
+  if (!validApellido.ok) return validApellido.message;
+
+  let validNit = validateNit(nit);
+  if (!validNit.ok) return validNit.message;
+
+  let validDedicacion = validateDedication(dedicacion);
+  if (!validDedicacion.ok) return validDedicacion.message;
+  
+  let validYear = validateYearService(yearService);
+  if (!validYear.ok) return validYear.message;
+
+  return true;
+}
+
 d.addEventListener("click", (e) => {
   e.preventDefault();
   if (e.target === $btnEnviar) {
@@ -52,7 +78,7 @@ d.addEventListener("click", (e) => {
       $inputDedication.value,
       $inputYearService.value
     );
-    let messageValidation = validationsOrdanary(
+    let messageValidation = validate(
       $inputName.value,
       $inputLastName.value,
       $inputNit.value,

@@ -133,3 +133,36 @@ export const validateYearService = (year = 0) => {
 
   return result;
 };
+
+export const validateNit = (nit) => {
+  const result = {
+    ok: true,
+    message: "El nit se agrego correctamente"
+  }
+
+  if (isEmpty(nit)) {
+    result.ok = false;
+    result.message = "El nit no puede estar vacio";
+    return result;
+  }
+
+  if (!isNumber(nit)) {
+    result.ok = false;
+    result.message = "El nit tiene que ser un numero";
+    return result;
+  }
+
+  if (!isPositiveNumber(nit)) {
+    result.ok = false;
+    result.message = "El nit tiene que ser un numero positivo";
+    return result;
+  } 
+
+  if (exceedMaxLength(nit, 12)) {
+    result.ok = false;
+    result.message = "El nit no puede ser mas de doce digitos";
+    return result;
+  }
+
+  return result;
+}

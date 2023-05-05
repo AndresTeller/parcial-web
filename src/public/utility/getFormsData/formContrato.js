@@ -1,6 +1,8 @@
 import { Contratado } from "../../../contratado/contratado.model.js";
 import { validationsContratado } from "../validation/validationsContratado.js";
 import { createProfesores } from "../../../profesor/utility/fetch-profesores.js";
+import { validateDates, validateDedication, validateLastname, validateName, validateNit } from "../../../contratado/contratado.validations.js";
+
 const d = document;
 
 // ELEMENTOS DEL HTML
@@ -42,6 +44,25 @@ const activeSucessMessage = () => {
   }, 2000);
 };
 
+const validate = (nombre, apellido, nit, dedicacion, startDate, endDate) => {
+  let validNombre = validateName(nombre);
+  if (!validNombre.ok) return validNombre.message;
+
+  let validApellido = validateLastname(apellido);
+  if (!validApellido.ok) return validApellido.message;
+
+  let validNit = validateNit(nit);
+  if (!validNit.ok) return validNit.message;
+
+  let validDedicacion = validateDedication(dedicacion);
+  if (!validDedicacion.ok) return validDedicacion.message;
+
+  let validDates = validateDates(startDate, endDate);
+  if (!validDates.ok) return validDates.message;
+    
+  return true;
+};
+
 $btnGuardar.addEventListener("click", (e) => {
   e.preventDefault();
 
@@ -54,7 +75,7 @@ $btnGuardar.addEventListener("click", (e) => {
     $endDate.value
   );
 
-  let messageValidation = validationsContratado(
+  let messageValidation = validate(
     $inputName.value,
     $inputLastName.value,
     $inputNit.value,
